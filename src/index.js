@@ -7,6 +7,7 @@ import * as path from 'path';
 import Phaser from "phaser";
 import PlatformerScene from "./platformer-scene.js";
 import Mod from "./mod.js";
+import { Map } from './map';
 
 const win = window.require('electron').remote.getCurrentWindow();
 let size = win.getSize();
