@@ -1,0 +1,44 @@
+{
+    "tilesets": {
+        "girl": {
+            "type": "spritesheet",
+            "path": "girl.png",
+            "width": 32,
+            "height": 32,
+            "margin": 1,
+            "spacing": 2
+        },
+        "dog": {
+            "type": "image",
+            "path": "girl.png"
+        },
+        "cat": {
+            "type": "json",
+            "path": "test.json"
+        }
+    },
+    "items": [
+        {
+            "name": "girl",
+            "type": "player",
+            "tileset": "girl",
+            "spawn": {
+                "x": 180,
+                "y": 80
+            },
+            "anims": [
+                {
+                    "name": "idle",
+                    "frame": [
+                        24,
+                        25,
+                        26,
+                        27
+                    ]
+                }
+            ],
+            "defaultAnimate": "idle",
+            "collides": true
+        }
+    ]
+}
