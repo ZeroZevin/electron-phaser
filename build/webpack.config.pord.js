@@ -7,17 +7,17 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
   mode: "production",
   entry: {
-    app: path.join(__dirname, './src/index.js')
+    app: path.join(__dirname, '../src/index.js')
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist/assets'),
+    path: path.resolve(__dirname, '../dist/assets'),
     publicPath: "assets/"
   },
   plugins: [
     new HtmlWebpackPlugin({ template: 'index.html', filename: '../index.html'  }),
     new CopyWebpackPlugin([
-      { from: path.resolve(__dirname,'assets'), to: path.resolve(__dirname,'dist', 'assets') }
+      { from: path.resolve(__dirname,'../assets'), to: path.resolve(__dirname,'../dist', 'assets') }
     ]),
     new UglifyJsPlugin()
   ],

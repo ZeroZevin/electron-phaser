@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack-dev-server --hot-only",
+    "dev": "node build/dev.js",
     "build": "webpack --config build/webpack.config.pord.js",
     "start": "npm run dev"
   },
