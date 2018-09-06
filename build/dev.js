@@ -1,7 +1,7 @@
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('../webpack.config.js');
+const config = require('./webpack.config.js');
 const electron = require('electron')
 const path = require('path')
 const { spawn } = require('child_process')
@@ -54,10 +54,8 @@ function startElectron() {
     electronProcess = spawn(electron, ['--inspect=5858', path.join(__dirname, '../main.js')])
 
     electronProcess.stdout.on('data', data => {
-        // electronLog(data, 'blue')
     })
     electronProcess.stderr.on('data', data => {
-        // electronLog(data, 'red')
     })
 
     electronProcess.on('close', () => {
