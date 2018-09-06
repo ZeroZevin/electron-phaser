@@ -1,6 +1,21 @@
 {
     "tilesets": {
-        "girl": "girl.png"
+        "girl": {
+            "type": "spritesheet",
+            "path": "girl.png",
+            "width": 32,
+            "height": 32,
+            "margin": 1,
+            "spacing": 2
+        },
+        "dog": {
+            "type": "image",
+            "path": "girl.png"
+        },
+        "cat": {
+            "type": "json",
+            "path": "test.json"
+        }
     },
     "items": [
         {
@@ -23,7 +38,7 @@
                 }
             ],
             "defaultAnimate": "idle",
-            "collid": true
+            "collides": true
         }
     ]
 }

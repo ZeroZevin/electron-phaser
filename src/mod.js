@@ -13,26 +13,29 @@ export default class Mod {
     preload() {
         if (this.config.tilesets && typeof (this.config.tilesets) == 'object') {
             for (let name in this.config.tilesets) {
-                this.scene.load.spritesheet(
-                    name,
-                    path.join(this.config.path, this.config.tilesets[name]),
-                    {
-                        frameWidth: 32,
-                        frameHeight: 32,
-                        margin: 1,
-                        spacing: 2
-                    }
-                );
+                if (this.config.tilesets[name].type === "spritesheet") {
+                    this.scene.load.spritesheet(
+                        this.name + "-" + name,
+                        path.join(this.config.path, this.config.tilesets[name].path),
+                        {
+                            frameWidth: this.config.tilesets[name].width,
+                            frameHeight: this.config.tilesets[name].height,
+                            margin: this.config.tilesets[name].margin,
+                            spacing: this.config.tilesets[name].spacing
+                        }
+                    );
+                }
             }
         }
     }
     create() {
-        if(this.config.items && this.config.items.forEach) {
+        if (this.config.items && this.config.items.forEach) {
             this.config.items.forEach(item => {
-                if(item.type == "player") {
+                if (item.type == "player") {
+                    item.tileset = this.name + "-" + item.tileset;
                     let modP = new ModPlayer(this.scene, item.spawn.x, item.spawn.y, item);
                     this.items.push(modP);
-                    if(item.collid){
+                    if (item.collides) {
                         this.scene.physics.world.addCollider(modP.sprite, this.scene.groundLayer);
                     }
                 }

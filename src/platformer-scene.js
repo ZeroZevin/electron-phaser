@@ -6,7 +6,6 @@ import MouseTileMarker from "./mouse-tile-maker.js";
  * A class that extends Phaser.Scene and wraps up the core logic for the platformer level.
  */
 export default class PlatformerScene extends Phaser.Scene {
-
   preload() {
     this.load.spritesheet(
       "player",
@@ -29,14 +28,15 @@ export default class PlatformerScene extends Phaser.Scene {
   }
 
   create() {
+    this.events.addListener('resize', this.resize.bind(this));
     this.isPlayerDead = false;
 
     const map = this.make.tilemap({ key: "map" });
     const tiles = map.addTilesetImage("0x72-industrial-tileset-32px-extruded", "tiles");
 
-    map.createDynamicLayer("Background", tiles);
+    map.createDynamicLayer("Background", tiles).setScrollFactor(0.8);
     this.groundLayer = map.createDynamicLayer("Ground", tiles);
-    map.createDynamicLayer("Foreground", tiles);
+    map.createDynamicLayer("Foreground", tiles).setScrollFactor(1.2);
 
     // Instantiate a player instance at the location of the "Spawn Point" object in the Tiled map
     const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
@@ -67,26 +67,48 @@ export default class PlatformerScene extends Phaser.Scene {
       }
     });
 
-    this.cameras.main.startFollow(this.player.sprite);
+    // this.cameras.main.startFollow(this.player.sprite);
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     this.marker = new MouseTileMarker(this, map);
 
     // Help text that has a "fixed" position on the screen
-    this.add
-      .text(16, 16, "Arrow/WASD to move & jump\nLeft click to draw platforms", {
-        font: "18px monospace",
-        fill: "#000000",
-        padding: { x: 20, y: 10 },
-        backgroundColor: "#ffffff"
-      })
-      .setScrollFactor(0);
+    // this.add
+    //   .text(16, 16, "Arrow/WASD to move & jump\nLeft click to draw platforms", {
+    //     font: "18px monospace",
+    //     fill: "#000000",
+    //     padding: { x: 20, y: 10 },
+    //     backgroundColor: "#ffffff"
+    //   })
+    //   .setScrollFactor(0);
 
     if (this.game.mods) {
       this.game.mods.forEach(mod => {
         mod.create();
       });
     }
+    this.input.on('pointerdown', function (pointer) {
+      if (pointer.buttons === 4) {
+        this.moving = true;
+        this.lastPosition = pointer.positionToCamera(this.cameras.main);
+      }
+    }, this);
+    this.input.on('pointermove', function (pointer) {
+      if (this.moving) {
+        const worldPoint = pointer.positionToCamera(this.cameras.main);
+        this.cameras.main.scrollX -= (worldPoint.x - this.lastPosition.x);
+        this.cameras.main.scrollY -= (worldPoint.y - this.lastPosition.y);
+        this.lastPosition = pointer.positionToCamera(this.cameras.main);
+      }
+    }, this);
+    this.input.on('pointerup', function (pointer) {
+      if (pointer.buttons === 4) {
+        this.moving = false;
+      }
+    }, this);
+    this.input.mouse.onWheel = (evt => {
+      this.cameras.main.zoom = Math.min(1.75, Math.max(this.cameras.main.zoom * (1 + 0.1 * evt.wheelDelta / 120), 0.7));
+    }).bind(this);
   }
 
   update(time, delta) {
@@ -99,13 +121,14 @@ export default class PlatformerScene extends Phaser.Scene {
         mod.update(time, delta);
       });
     }
-
     // Add a colliding tile at the mouse position
     const pointer = this.input.activePointer;
     const worldPoint = pointer.positionToCamera(this.cameras.main);
     if (pointer.isDown) {
-      const tile = this.groundLayer.putTileAtWorldXY(6, worldPoint.x, worldPoint.y);
-      tile.setCollision(true);
+      if (pointer.buttons == 1) {
+        const tile = this.groundLayer.putTileAtWorldXY(6, worldPoint.x, worldPoint.y);
+        tile.setCollision(true);
+      }
     }
 
     if (
@@ -128,5 +151,9 @@ export default class PlatformerScene extends Phaser.Scene {
         this.scene.restart();
       });
     }
+  }
+
+  resize(w, h) {
+    this.cameras.main.setSize(w, h); console.log(w, h);
   }
 }

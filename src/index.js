@@ -8,6 +8,9 @@ import Phaser from "phaser";
 import PlatformerScene from "./platformer-scene.js";
 import Mod from "./mod.js";
 
+const win = window.require('electron').remote.getCurrentWindow();
+let size = win.getSize();
+
 // 当前目录
 const modPath = 'E:/Games/electron-phaser/mods';
 window._require = new Function('mod', `
@@ -24,8 +27,10 @@ let scene = new PlatformerScene();
 
 const config = {
   type: Phaser.AUTO,
-  width: 805,
-  height: 600,
+  "render.autoResize": true,
+  width: size[0],
+  height: size[1],
+  parent: 'scene',
   pixelArt: true,
   backgroundColor: "#1d212d",
   scene: scene,
@@ -38,13 +43,24 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-
 const modConfigs = window._require(modPath);
 if (modConfigs) {
+  let names = [];
   let mods = [];
   for (let config of modConfigs) {
-    config.path = path.join(modPath, config.name);
-    mods.push(new Mod(scene, config));
+    if (names.indexOf(config.name) > -1) {
+      console.error(config.name + ' is load twice!');
+    } else {
+      config.path = path.join(modPath, config.name);
+      mods.push(new Mod(scene, config));
+    }
+    names.push(config.name);
   }
   game.mods = mods;
+}
+game.scaleManager.scaleMode = 3;
+window.game = game;
+window.onresize = (xy) => {
+  game.resize(window.innerWidth, window.innerHeight);
+  // game.renderer.resize(window.innerWidth, window.innerHeight);
 }
