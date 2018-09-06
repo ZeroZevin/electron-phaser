@@ -1,0 +1,29 @@
+{
+    "tilesets": {
+        "girl": "girl.png"
+    },
+    "items": [
+        {
+            "name": "girl",
+            "type": "player",
+            "tileset": "girl",
+            "spawn": {
+                "x": 80,
+                "y": 80
+            },
+            "anims": [
+                {
+                    "name": "idle",
+                    "frame": [
+                        24,
+                        25,
+                        26,
+                        27
+                    ]
+                }
+            ],
+            "defaultAnimate": "idle",
+            "collid": true
+        }
+    ]
+}

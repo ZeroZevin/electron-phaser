@@ -1,45 +1,38 @@
-import Phaser from "phaser";
+import { Phaser, AnimationFrameConfig } from "phaser";
 
 /**
  * A class that wraps up our 2D platforming player logic. It creates, animates and moves a sprite in
  * response to WASD/arrow keys. Call its update method from the scene's update and call its destroy
  * method when you're done with the player.
  */
-export default class Player {
-  constructor(scene, x, y) {
+export default class ModPlayer {
+  constructor(scene, x, y, config) {
     this.scene = scene;
     // Create the animations we need from the player spritesheet
     const anims = scene.anims;
-    anims.create({
-      key: "player-idle",
-      frames: anims.generateFrameNumbers("player", { start: 0, end: 3 }),
-      frameRate: 3,
-      repeat: -1
-    });
-    anims.create({
-      key: "player-run",
-      frames: anims.generateFrameNumbers("player", { start: 8, end: 15 }),
-      frameRate: 12,
-      repeat: -1
-    });
+    if (config.anims && config.anims.forEach) {
+      config.anims.forEach(anim => {
+        let frames = [];
+        anim.frame.forEach(f => {
+          frames.push({ key: config.tileset, frame: f })
+        });
+        anims.create({
+          key: config.name + "-" + anim.name,
+          frames: frames,
+          frameRate: 3,
+          repeat: -1
+        });
+      })
+    }
+
     // Create the physics-based sprite that we will move around and animate
     this.sprite = scene.physics.add
-      .sprite(x, y, "player", 0)
+      .sprite(x, y, config.name, 0)
       .setDrag(1000, 0)
       .setMaxVelocity(300, 400)
       .setSize(18, 24)
       .setOffset(7, 9);
-
-    // Track the arrow keys & WASD
-    const { LEFT, RIGHT, UP, W, A, D } = Phaser.Input.Keyboard.KeyCodes;
-    this.keys = scene.input.keyboard.addKeys({
-      left: LEFT,
-      right: RIGHT,
-      up: UP,
-      w: W,
-      a: A,
-      d: D
-    });
+    this.sprite.anims.play(config.name + "-" + config.defaultAnimate, true)
   }
 
   freeze() {

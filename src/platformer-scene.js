@@ -6,6 +6,7 @@ import MouseTileMarker from "./mouse-tile-maker.js";
  * A class that extends Phaser.Scene and wraps up the core logic for the platformer level.
  */
 export default class PlatformerScene extends Phaser.Scene {
+
   preload() {
     this.load.spritesheet(
       "player",
@@ -20,6 +21,11 @@ export default class PlatformerScene extends Phaser.Scene {
     this.load.image("spike", "assets/images/0x72-industrial-spike.png");
     this.load.image("tiles", "assets/tilesets/0x72-industrial-tileset-32px-extruded.png");
     this.load.tilemapTiledJSON("map", "assets/tilemaps/platformer.json");
+    if (this.game.mods) {
+      this.game.mods.forEach(mod => {
+        mod.preload();
+      });
+    }
   }
 
   create() {
@@ -75,6 +81,12 @@ export default class PlatformerScene extends Phaser.Scene {
         backgroundColor: "#ffffff"
       })
       .setScrollFactor(0);
+
+    if (this.game.mods) {
+      this.game.mods.forEach(mod => {
+        mod.create();
+      });
+    }
   }
 
   update(time, delta) {
@@ -82,6 +94,11 @@ export default class PlatformerScene extends Phaser.Scene {
 
     this.marker.update();
     this.player.update();
+    if (this.game.mods) {
+      this.game.mods.forEach(mod => {
+        mod.update(time, delta);
+      });
+    }
 
     // Add a colliding tile at the mouse position
     const pointer = this.input.activePointer;
