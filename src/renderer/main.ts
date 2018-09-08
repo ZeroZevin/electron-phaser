@@ -1,3 +1,3 @@
-import Phaser from 'phaser'
+import * as Phaser from 'Phaser'
 
 console.log(Phaser)

@@ -68675,7 +68675,7 @@ declare namespace Phaser.Utils.Objects {
 
 declare type integer = number;
 
-declare module 'phaser' {
+declare module 'Phaser' {
     export = Phaser;
 
 }

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs"
+    "module": "commonjs",
+    "typeRoots" : ["./typings"]
   },
   "extends": "./node_modules/electron-webpack/tsconfig-base.json"
 }
