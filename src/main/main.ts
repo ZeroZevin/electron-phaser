@@ -13,7 +13,7 @@ async () => {
 }
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
-let mainWindow;
+let mainWindow: Electron.BrowserWindow;
 
 function createMainWindow() {
   const window = new BrowserWindow();
