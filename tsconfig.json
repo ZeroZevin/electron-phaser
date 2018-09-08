@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "typeRoots" : ["./typings"]
+    "target": "es2015",
+    "noImplicitAny": true,
+    "typeRoots": ["./typings"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": false
   },
+  "include": ["src/**/*"],
   "extends": "./node_modules/electron-webpack/tsconfig-base.json"
 }
