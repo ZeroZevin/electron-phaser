@@ -1,3 +1,3 @@
 import * as Phaser from 'Phaser'
 
-console.log(Phaser)
+console.log(Phaser);
