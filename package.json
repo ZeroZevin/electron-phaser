@@ -16,6 +16,8 @@
     "electron": "^2.0.8",
     "electron-webpack": "^2.3.1",
     "electron-webpack-ts": "^2.1.0",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
     "typescript": "^3.0.3",
     "webpack": "^4.17.2"
   },
