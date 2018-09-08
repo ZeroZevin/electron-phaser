@@ -1,5 +1,4 @@
 node_modules
-!node_modules/@types/phaser.d.ts
 .vscode
 dist
 package-lock.json

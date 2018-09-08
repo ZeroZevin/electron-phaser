@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "module": "commonjs"
+  },
+  "extends": "./node_modules/electron-webpack/tsconfig-base.json"
+}
