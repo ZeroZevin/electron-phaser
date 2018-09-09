@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face { 
+  font-family: 'pixel';
+  src: url(/assets/fonts/fangzheng_pixel_12.TTF);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: pixel;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+#ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.ui-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.btn {
+  width: 200px;
+  height: 30px;
+  font-family: pixel;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  position: absolute;
+  transform: translateX(-50%);
+  user-select: none;
+  outline: none;
+}
+
+.btn:active {
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
+}
