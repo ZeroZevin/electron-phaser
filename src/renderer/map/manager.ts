@@ -1,4 +1,4 @@
-
+import { Noise2D, Perlin, QualityMode } from '@common/Noise2D'
 import { Map } from './map'
 /**
  * 地图管理类
@@ -16,7 +16,10 @@ export default class MapManager {
    * 创建地图
    * @param seed 随机种子
    */
-  create (seed: string) {
+  create (seed: number) {
+    seed = seed || Math.random() * 1000000 % 1000000 + 1
+    let perlin = new Perlin(seed, QualityMode.High)
+    let noise = new Noise2D(256, 256, perlin)
     let map = new Map()
     return map
   }
