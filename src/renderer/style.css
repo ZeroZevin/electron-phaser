@@ -4,12 +4,13 @@
   box-sizing: border-box;
 }
 
-@font-face { 
-  font-family: 'pixel';
+@font-face {
+  font-family: "pixel";
   src: url(/assets/fonts/fangzheng_pixel_12.TTF);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -49,8 +50,12 @@ html, body {
   outline: none;
 }
 
-.btn:active {
+.btn:hover {
   background-color: #ccc;
+}
+
+.btn:active {
+  background-color: #aaa;
 }
 
 .hidden {

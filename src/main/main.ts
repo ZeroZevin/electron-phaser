@@ -13,7 +13,7 @@ function createMainWindow () {
   const window = new BrowserWindow({
     width: 816,
     height: 659,
-    frame: true
+    frame: true,
   })
 
   if (isDevelopment) {
@@ -27,8 +27,8 @@ function createMainWindow () {
       formatUrl({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file',
-        slashes: true
-      })
+        slashes: true,
+      }),
     )
   }
 

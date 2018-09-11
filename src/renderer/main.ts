@@ -4,6 +4,7 @@ import './style.css'
 
 import { PreloadScene } from './scene/preload/preload'
 import { BootScene } from './scene/boot/boot'
+// import {} from './scene/'
 
 const scenes: Phaser.Scene[] = [
   new PreloadScene({ key: 'preloadScene', active: true }),
