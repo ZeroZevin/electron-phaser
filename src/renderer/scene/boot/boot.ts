@@ -1,8 +1,8 @@
 import * as Phaser from 'Phaser'
 
-import { game } from '../../main'
+import { game } from '@renderer/main'
 
-import { UIButton } from '../../UI/button'
+import { UIButton } from '@renderer/UI/button'
 
 export class BootScene extends Phaser.Scene {
   private _$UIEl: HTMLDivElement
