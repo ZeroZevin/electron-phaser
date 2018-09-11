@@ -6,7 +6,13 @@
     "typeRoots": ["./typings"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "paths": {
+      "@main/*": ["src/main/*"], // This mapping is relative to "baseUrl"
+      "@renderer/*": ["src/renderer/*"], // This mapping is relative to "baseUrl"
+      "@common/*": ["src/common/*"] // This mapping is relative to "baseUrl"
+    }
   },
   "include": ["src/**/*"],
   "extends": "./node_modules/electron-webpack/tsconfig-base.json"

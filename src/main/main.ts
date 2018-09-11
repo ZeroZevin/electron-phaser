@@ -10,7 +10,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 let mainWindow: Electron.BrowserWindow
 
 function createMainWindow () {
-  const window = new BrowserWindow()
+  const window = new BrowserWindow({
+    width: 816,
+    height: 659,
+    frame: true,
+  })
 
   if (isDevelopment) {
     window.webContents.openDevTools()

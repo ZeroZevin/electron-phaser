@@ -586,7 +586,7 @@ declare type GameConfig = {
     /**
      * [description]
      */
-    scene?: object;
+    scene?: Phaser.Scene[] | Phaser.Scene;
     /**
      * [description]
      */
