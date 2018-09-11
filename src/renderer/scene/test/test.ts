@@ -4,4 +4,12 @@ export class TestScene extends Phaser.Scene {
   constructor (config: Phaser.Scenes.Settings.Config) {
     super(config)
   }
+
+  preload () {
+  }
+  create () {
+  }
+  update () {
+  }
+
 }
