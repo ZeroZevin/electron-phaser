@@ -1,5 +1,4 @@
 
-import { TileType } from './tiletype'
 import { Tile } from './tile'
 
 /**
