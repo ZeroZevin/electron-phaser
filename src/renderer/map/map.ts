@@ -13,6 +13,15 @@ export class Map {
    * 图块集合
    */
   private _tiles: {[key: string]: Tile} = {}
+  /**
+   * 地图高度
+   */
+  width = 2
+  /**
+   * 地图宽度
+   */
+  height = 2
+  horizen = 0.05
   constructor (name = 'default map') {
     this.name = name
   }
@@ -32,5 +41,16 @@ export class Map {
    */
   addTile (x: number, y: number, tile: Tile) {
     this._tiles[x + '#' + y] = tile
+  }
+  /**
+   * 判断是否高于地平线
+   * @param x x坐标
+   * @param y y坐标
+   */
+  heiType (x: number, y: number) {
+    if (this._tiles[x + '#' + y]) {
+      return this._tiles[x + '#' + y].terrain.heightType
+    }
+    return 2
   }
 }

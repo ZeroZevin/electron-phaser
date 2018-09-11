@@ -27,5 +27,5 @@ export abstract class VisableItem extends BaseItem {
    * @param time 当前地图时间
    * @param delta 本次调用时间差
    */
-  abstract draw (time: number, delta: number): void
+  abstract draw (time: number, delta: number, graphics: Phaser.GameObjects.Graphics): void
 }

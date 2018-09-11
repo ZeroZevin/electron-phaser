@@ -254,7 +254,7 @@ export class Perlin {
 
   GradientNoise3D (fx: number, fy: number, fz: number, ix: number, iy: number, iz: number, seed: number) {
     let i = (this.GeneratorNoiseX * ix + this.GeneratorNoiseY * iy + this.GeneratorNoiseZ * iz +
-      this.GeneratorSeed * seed) & 0xffffffff
+        this.GeneratorSeed * seed) & 0xffffffff
     i ^= (i >> this.GeneratorShift)
     i &= 0xff
     let xvg = this.Randoms[(i << 2)]
@@ -291,7 +291,7 @@ export class Noise2D {
   private _data: any[] = []
   private _ucWidth = 0
   private _ucHeight = 0
-  private _ucBorder = 1
+  private _ucBorder = 0
   private _ucData: any[] = []
 
   constructor (width: number, height: number, generator: any = null) {
@@ -301,8 +301,6 @@ export class Noise2D {
     this._height = height
     this._ucWidth = width + this._ucBorder * 2
     this._ucHeight = height + this._ucBorder * 2
-    // this._ucData = new float[width + _ucBorder * 2, height + _ucBorder * 2];
-    // this._data = new float[width, height];
     this._data = []
     for (let i = 0; i < width; i++) {
       this._data.push([])
