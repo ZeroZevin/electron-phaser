@@ -4,6 +4,7 @@ import './style.css'
 
 import { PreloadScene } from './scene/preload/preload'
 import { BootScene } from './scene/boot/boot'
+import { MainScene } from './scene/main/main'
 import { TestScene } from './scene/test/test'
 
 // import {} from './scene/'
@@ -14,7 +15,7 @@ import { TestScene } from './scene/test/test'
 // ]
 
 const scenes: Phaser.Scene[] = [
-  new TestScene({ key: 'testScene', active: true }),
+  new MainScene({ key: 'mainScene', active: true }),
 ]
 
 class Game extends Phaser.Game {
