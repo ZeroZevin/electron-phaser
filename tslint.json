@@ -38,7 +38,7 @@
     ],
     "no-internal-module": true,
     "no-trailing-whitespace": true,
-    "no-null-keyword": true,
+    "no-null-keyword": false,
     "prefer-const": false,
     "jsdoc-format": true
   }
