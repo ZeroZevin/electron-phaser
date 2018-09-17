@@ -10,13 +10,10 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload () {
-    // load assets
-    this.load.image('player', 'mods/test/girl.png')
+    //
   }
 
   async create () {
-    console.log('PreloadScene create', this.game)
-
     let title = this.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Miss World', {
       font: '150px pixel',
       fill: '#ffffff',
@@ -62,7 +59,11 @@ export class PreloadScene extends Phaser.Scene {
     })
   }
 
-  async fadeToNext () {
+  update () {
+    // console.log('PreloadScene', arguments)
+  }
+
+  fadeToNext () {
     // this.game.scene.start('bootScene', { name: 'zero' })
     // this.game.scene.getScene(this)
     // this.game.scene.stop('preloadScene')
@@ -72,9 +73,5 @@ export class PreloadScene extends Phaser.Scene {
       this.game.scene.switch('preloadScene', 'bootScene')
     })
     //
-  }
-
-  update () {
-    // console.log('PreloadScene', arguments)
   }
 }
