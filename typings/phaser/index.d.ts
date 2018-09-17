@@ -15384,7 +15384,7 @@ declare namespace Phaser {
              * @param y The vertical position of this Game Object in the world.
              * @param element The DOM element.
              */
-            dom(x: number, y: number, element: string): Phaser.GameObjects.DOMElement;
+            dom(x: number, y: number, element: HTMLElement): Phaser.GameObjects.DOMElement;
 
             /**
              * The Scene to which this Game Object Factory belongs.
